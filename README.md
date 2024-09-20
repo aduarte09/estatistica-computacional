@@ -11,10 +11,10 @@
 | 06 | KNN (com distância entre pontos) e problema Pinguins |
 | 07 | Função KNN e problema Pinguins |
 | 08 | Árvore de decisão, medida de Gini e problema Câncer |
-| 09 | ? |
-| 10 | ? |
-| 11 | ? |
-| 12 | ? |
+| 09 | Floresta de decisão e introdução ao web scraping |
+| 10 | Raspagem de dados |
+| 11 | Raspagem de dados |
+| 12 | Raspagem de dados |
 
 ### 📝 Listas de exercício
 - [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_01.R)
