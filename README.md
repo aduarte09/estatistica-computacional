@@ -20,7 +20,7 @@
 - [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_01.R)
 
 ### 📌 Listas de revisão
-- [Revisão P1]()
+- [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/lista_revisao_01.R)
 
 ### 💭 Outros
 - Link para o [site](franklinpedro.github.io) do professor.
