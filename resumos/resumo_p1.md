@@ -17,7 +17,8 @@
 - ```nrow()``` retorna o número de linhas de um data frame;
 - ```na.omit()``` remove linhas com valores NA (ausentes) de um data frame;
 - ```data.frame()``` cria um data frame a partir de vetores ou listas;
-- ```cor()``` matriz de correlação, mede a força e direção da relação entre variáveis numéricas.
+- ```cor()``` matriz de correlação, mede a força e direção da relação entre variáveis numéricas;
+- ```which()``` retorna os índices dos elementos que atendem a uma condição lógica especificada.
 
 
 ### Estruturas de repetição
