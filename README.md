@@ -17,7 +17,7 @@
 | 12 | ? |
 
 ### 📝 Listas de exercício
-- [Lista 01]()
+- [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_01.R)
 
 ### 📌 Listas de revisão
 - [Revisão P1]()
