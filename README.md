@@ -29,4 +29,3 @@
 ### Outros
 - Link para o [site](franklinpedro.github.io) do professor
 - Link para o [livro](https://r4ds.hadley.nz) R for Data Science
-- Link para o [resumo](https://docs.google.com/document/d/1EQGMGFsdB0pYi3NMspdXnpYdta_ejg8E61AtZN7HygI/edit?usp=sharing) da P1
