@@ -1,6 +1,6 @@
 # estatistica-computacional
 
-### 🖥️ Conteúdo dos LABs
+### 🖥️ Laboratórios
 | **LAB** | **Conteúdo** |
 |---------|----------------|
 | 01 | Introdução ao R |
@@ -16,6 +16,12 @@
 | 11 | ? |
 | 12 | ? |
 
-### 🖥️ Listas de exercício
+### 📝 Listas de exercício
+- [Lista 01]()
 
-### 🖥️ Listas de revisão
+### 📌 Listas de revisão
+- [Revisão P1]()
+
+### 💭 Outros
+- Link para o [site](franklinpedro.github.io) do professor.
+- Link para o [livro](https://r4ds.hadley.nz) R for Data Science
