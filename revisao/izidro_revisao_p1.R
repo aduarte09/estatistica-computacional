@@ -80,3 +80,76 @@ estima_E_X(N)
 
 #Exercício 3
 #É O DO LUKE DO TRABALHO
+#(a)
+moeda <- c("cara", "coroa")
+n <- 20
+precipicio <- 0
+passeio <- function(L){
+  if(L>precipicio & L<n){
+    while((L!=precipicio) & (L!=n)){
+      sorteio <- sample(moeda,size = 1)
+      if(sorteio == "cara"){
+        L <- L+1
+      }else{
+        L <- L-1
+      }
+    }
+    if(L == n){
+      print("Luke chegou em casa, sua jornada acabou! A mimir ZZZ")
+      return(1)
+    }else{
+      print("Luke caiu no precipicio!!!")
+      return (0)
+    }
+  }else{
+    return("L precisa ser maior que zero e menor que 20")
+  }
+}
+L <- 10               #defina aqui o valor de L
+fim <- passeio(L)
+fim
+
+#(b)
+passeio2 <- function(L){
+  resultados <- c()
+  for(j in 1:10000){
+    moeda <- c("cara", "coroa")
+    n <- 20
+    precipicio <- 0
+    passeio <- function(L){
+      if(L>precipicio & L<n){
+        while((L!=precipicio) & (L!=n)){
+          sorteio <- sample(moeda,size = 1)
+          if(sorteio == "cara"){
+            L <- L+1
+          }else{
+            L <- L-1
+          }
+        }
+        if(L == n)
+          return(1)
+        else
+          return (0)
+      }else{
+        return("L precisa ser maior que zero e menor que 20")
+      }
+    }
+    fim <- passeio(L)
+    resultados[j] <- c(fim)
+  }
+  resultados <- mean(resultados)
+  resultados
+}
+L <- 10               #defina aqui o valor de L
+fim2 <- passeio2(L)
+fim2
+
+#(c)
+proporcao_L <- c()
+for(L in 1:19) {
+  proporcao_L[L] <- passeio2(L)
+}
+proporcao_L[L]
+barplot(height = proporcao_L, names.arg = 1:19,
+        main = "Proporção de vezes que Luke chegou em casa",
+        xlab = "Posição inicial", ylab = "Proporção")
