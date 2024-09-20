@@ -23,6 +23,7 @@
 ### Listas de revisão
 - [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/felipe_revisao_p1.R) feita pelo Felipe
 - [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/amanda_revisao_p1.R) feita pela Amanda
+- [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/saliba_revisao_p1.R) feita pelo Saliba
 
 ### Outros
 - Link para o [site](franklinpedro.github.io) do professor
