@@ -24,5 +24,5 @@
 - [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/amanda_revisao_p1.R) feita pela Amanda
 
 ### 💭 Outros
-- Link para o [site](franklinpedro.github.io) do professor.
+- Link para o [site](franklinpedro.github.io) do professor
 - Link para o [livro](https://r4ds.hadley.nz) R for Data Science
