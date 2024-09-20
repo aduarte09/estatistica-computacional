@@ -17,7 +17,8 @@
 | 12 | Raspagem de dados |
 
 ### Listas de exercício
-- [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_01.R) feita pela Amanda
+- [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/amanda_lista_01.R) feita pela Amanda
+- [Lista 01]() feita pelo Saliba
 
 ### Listas de revisão
 - [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/felipe_revisao_p1.R) feita pelo Felipe
