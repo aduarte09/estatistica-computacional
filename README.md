@@ -28,7 +28,7 @@
 - [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_01_saliba.R) feita pelo Saliba
 - [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_01_izidro.R) feita pelo Izidro
 - [Lista 02](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_02_amanda.R) feita pela Amanda
-- [Lista 02](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_02_felipe.R) feita pelo Felipe
+- [Lista 02](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_02_felipe.qmd) feita pelo Felipe
 
 ### Listas de revisão
 - [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/p1_felipe.R) feita pelo Felipe
