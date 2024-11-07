@@ -24,16 +24,17 @@
 | 19 | Modelo LM no problema Fêmur e Aprendizado Não Supervisionado |
 
 ### Listas de exercício
-- [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/amanda_lista_01.R) feita pela Amanda
-- [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/saliba_lista_01.R) feita pelo Saliba
-- [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/izidro_lista_01.R) feita pelo Izidro
-- [Lista 02](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/amanda_lista_02.R) feita pela Amanda
+- [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_01_amanda.R) feita pela Amanda
+- [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_01_saliba.R) feita pelo Saliba
+- [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_01_izidro.R) feita pelo Izidro
+- [Lista 02](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_02_amanda.R) feita pela Amanda
+- [Lista 02](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_02_felipe.R) feita pelo Felipe
 
 ### Listas de revisão
-- [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/felipe_revisao_p1.R) feita pelo Felipe
-- [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/amanda_revisao_p1.R) feita pela Amanda
-- [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/izidro_revisao_p1.R) feita pelo Izidro
-- [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/saliba_revisao_p1.R) feita pelo Saliba
+- [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/p1_felipe.R) feita pelo Felipe
+- [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/p1_amanda.R) feita pela Amanda
+- [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/p1_izidro.R) feita pelo Izidro
+- [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/p1_saliba.R) feita pelo Saliba
 
 ### Outros
 - Link para o [site](franklinpedro.github.io) do professor
