@@ -1,0 +1,327 @@
+---
+title: "Pratica Final"
+format: html
+editor: visual
+author: "Felipe Santos Silva 12221BCC042"
+lang: "pt"
+---
+
+## Questão 1)
+
+O conjunto de dados `diabetes.txt` contém diversas variáveis que podem ser úteis para análises e modelagem estatística relacionadas ao diabetes. Algumas das variáveis incluídas são: idade, número de gravidezes, concentração de glicose no plasma, concentração de insulina sérica no plasma sanguíneo, pressão sanguínea, espessura da dobra cutânea do tríceps, índice de massa corporal, histórico familiar de diabetes e resultados de testes médicos (indicado se o paciente tem ou não diabetes). Muitas dessas variáveis podem ser utilizadas para prever o risco de diabetes em pacientes, identificar fatores de risco associados à doença e realizar análises epidemiológicas. Importe o conjunto de dados para o R e, em seguida, crie um conjunto de treinamento e de teste. Para estudar o problema e construir o modelo de classificação, utilize sempre o conjunto de treinamento.
+
+```{r}
+diabetes <- read.table("diabetes.txt", header = TRUE, sep = ';')
+summary(diabetes)
+str(diabetes)
+diabetes$Diabetic <- as.factor(diabetes$Diabetic)
+
+n <- round(0.8 * nrow(diabetes))
+indice_treino <- sample(1:nrow(diabetes), n, replace = FALSE)
+treino <- diabetes[indice_treino,] 
+teste <- diabetes[-indice_treino,]
+```
+
+## a)
+
+Realize um estudo descritivo a partir de análises gráficas para compreender as diferenças entre pacientes que possuem diabetes e aqueles que não possuem. Apresente os gráficos e escreva um pequeno texto indicando os resultados obtidos.
+
+```{r}
+library(ggplot2)
+library(rpart)
+library(rpart.plot)
+
+ggplot(diabetes, aes(x = Pregnancies, fill = Diabetic))+ 
+  geom_bar() +
+  theme_minimal()
+
+ggplot(diabetes, aes(x = PlasmaGlucose, fill = Diabetic))+ 
+  geom_bar() +
+  theme_minimal()
+
+ggplot(diabetes, aes(x = DiastolicBloodPressure, fill = Diabetic))+ 
+  geom_bar() +
+  theme_minimal()
+
+ggplot(diabetes, aes(x = TricepsThickness, fill = Diabetic))+ 
+  geom_bar() +
+  theme_minimal()
+
+ggplot(diabetes, aes(x = SerumInsulin, fill = Diabetic))+ 
+  geom_bar() +
+  theme_minimal()
+
+ggplot(diabetes, aes(x = BMI, fill = Diabetic))+ 
+  geom_histogram() +
+  theme_minimal()
+
+ggplot(diabetes, aes(x = DiabetesPedigree, fill = Diabetic))+ 
+  geom_histogram() +
+  theme_minimal()
+
+ggplot(diabetes, aes(x = Age, fill = Diabetic))+ 
+  geom_bar() +
+  theme_minimal()
+
+print("glicose no plasma entre 100 e 150, são bons indicativos de diabetes")
+print("Mais que 12 gravidez ou triceps muito grossos (>60) ou BMI acima de 50 apresentam diabetes com grande certeza")
+```
+
+## b)
+
+Crie um modelo de árvore de decisão e, em seguida, plote a árvore do modelo (essa representação visual da árvore deverá ser entregue junto com o script). A partir da representação visual da árvore de decisão, crie uma função cuja entrada seja as informações de um paciente e a saída seja o diagnóstico do paciente (com ou sem diabetes). Esta função deverá ser construída utilizando uma estrutura condicional como aprendido na primeira parte do curso. Utilize esta função para classificar todos os pacientes do conjunto de teste. Calcule a acurácia do modelo.
+
+```{r}
+arvore <- rpart(formula = Diabetic~., data = treino, method = "class")
+rpart.plot(arvore, extra = 101) #plotar arvore
+
+#previsao = predict(arvore, newdata = teste, type = "class")
+#previsao
+
+diabetico <- function(Pregnancies, PlasmaGlucose, DiastolicBloodPressure, TricepsThickness, SerumInsulin, BMI, DiabetesPedigree, Age){
+  if(Pregnancies < 2) return(0)
+  else{
+    if(BMI < 22) return(0)
+    else{
+      if(SerumInsulin < 52){
+        if(Age < 36) return(0)
+        else return(1)
+      }else{
+        if(Age < 36){
+          if(PlasmaGlucose < 96){
+            if(BMI >= 32) return(0)
+            else return(1)
+          }else{
+            if(Age >= 24){
+              if(Age < 27) return(0)
+              else return(1)
+            }else return(1)
+          }
+        }else return(1)
+      }
+    }
+  }
+}
+
+previsao <- c()
+for(i in 1:nrow(teste)){
+  previsao <- c(previsao, diabetico(teste[i, 2], teste[i, 3], teste[i, 4], teste[i, 5], teste[i, 6], teste[i, 7], teste[i, 8], teste[i, 9]))
+}
+mean(previsao == teste$Diabetic)
+```
+
+## c)
+
+Crie agora um modelo de floresta aleatória e encontre a acurácia do modelo.
+
+```{r}
+library(randomForest)
+
+floresta <- randomForest(formula = Diabetic ~ ., data = treino, ntree = 200)
+floresta #mostrar matriz de confusao
+previsao.floresta <- predict(floresta, newdata = teste, type = "class")
+mean(previsao.floresta == teste$Diabetic)
+```
+
+## d)
+
+Para cada um dos modelos, dado que um paciente tenha diabetes, qual a probabilidade de cada um dos modelos classificar corretamente o diagnóstico deste paciente?
+
+```{r}
+print("Arvore")
+mean(previsao[teste$Diabetic == 1] == 1)
+#79%
+
+print("Floresta")
+mean(previsao.floresta[teste$Diabetic == 1] == 1)
+#90
+```
+
+## e)
+
+Fa¸ca um pequeno texto para comparar os dois modelos construídos (por exemplo, com relação as medidas calculadas, qual se saiu melhor?).
+
+```{r}
+print("A floresta aleatória se saiu melhor que a arvore. Sua precisao geral foi cerca de 4% melhor e sua precisão, dado que o paciente tenha diabete, foi cerca de 11% melhor")
+
+```
+
+## Questão 2)
+
+O cerebelo é uma estrutura cerebral altamente convoluta localizada abaixo dos hemisférios cerebrais. Acredita-se que esta estrutura intrigante facilite a aquisição e uso de dados sensoriais pelo resto do cérebro, particularmente nas áreas motoras. Estudos sugerem que o cerebelo pode aumentar proporcionalmente com o tamanho do corpo dos animais, enquanto outras partes do cerebro são claramente representadas de forma diferente entre as espécies. O arquivo cerebelo.csv apresenta os dados de 15 espécies de mamíferos mostrando os pesos em gramas de seus corpos e cerebelos, junto com os valores transformados em logaritmo na base 10.
+
+Log_cerebellum
+
+```{r}
+cerebelo <- read.csv2("cerebelo.csv", header = TRUE, sep = ",")
+str(cerebelo)
+summary(cerebelo)
+
+cerebelo$Cerebellum_g <- as.numeric(cerebelo$Cerebellum_g)
+cerebelo$Log_body <- as.numeric(cerebelo$Log_body)
+cerebelo$Log_cerebellum  <- as.numeric(cerebelo$Log_cerebellum )
+```
+
+## a)
+
+Faça um gráfico de dispersão do peso do cerebelo (em y) em relação ao peso do corpo (em x) e outro gráfico de dispersão utilizando os valores transformados, ou seja, um gráfico em que o logaritmo do peso do cerebelo estará em y e o logaritmo do peso do corpo estará em x. Descreva e compare ambos os gráficos de dispersão. O que você aprendeu sobre a relação entre o peso do cerebelo e o peso do corpo a partir desses gráficos?
+
+```{r}
+library(ggplot2)
+
+ggplot(cerebelo, aes(x = Body_g, y = Cerebellum_g)) +
+  geom_point(color = "orangered") +
+  theme_minimal()
+
+ggplot(cerebelo, aes(x = Log_body, y = Log_cerebellum)) +
+  geom_point(color = "royalblue") +
+  theme_minimal()
+
+print("Parece haver uma  relação logaritimica entre peso corporal e o peso do cerebelo entre as especies. Quanto maior o peso corporal, maior o peso do cerebelo.")
+```
+
+## b)
+
+Calcule o coeficiente de correlação entre as variáveis peso do cerebelo e peso do corpo.
+
+```{r}
+cor(cerebelo$Body_g, cerebelo$Cerebellum_g)
+```
+
+## c)
+
+Calcule o coeficiente de correlação entre as variáveis logaritmo do peso do cerebelo e logaritmo do peso do corpo.
+
+```{r}
+cor(cerebelo$Log_body, cerebelo$Log_cerebellum)
+```
+
+## d)
+
+Compare os dois resultados obtidos anteriormente.
+
+```{r}
+print("Não existe uma correlação linear entre peso corporal e peso do cerebelo, mas sim uma logaritimica, ja que ao transformar os valores em log10, passamos a ter uma forte correlação linear")
+```
+
+## e)
+
+Encontre a equação da reta de regressão usando os valores transformados em logaritmo. Qual é a equação da reta? Analise a saída do modelo `lm` a partir da função `summary()` e comente os resultados dos testes de hipóteses realizados em relação ao modelo. Por fim, acrescente a reta de regressão no gráfico obtido na parte (a).
+
+```{r}
+
+
+#PASSO 1 - analisar a correlação
+#cor.test: teste de hipótese para verificar se um coef. de correlação é zero
+#H0 : coeficientete de correlação é zero
+#Ha: coeficiente de correção não é zero
+cor.test(cerebelo$Log_body, cerebelo$Log_cerebellum)
+#p-value indica se aceita ou rejeita a hipotese nula. Se for muito pequeno, eu rejeito a hipótese nula(Menor que 0.05)
+print("pvalue é muito pequeno, rejeito H0")
+
+#PASSO 2 - determinar a regressão
+#vamos determinar a reta de regressão
+modelo_linear <- lm(formula = Log_cerebellum ~ Log_body, data = cerebelo)
+modelo_linear
+print("Log_cerebellum = 0.7828*Log_body - 2.1574")
+
+summary(modelo_linear)
+#coefficient -> ultima coluna dá o pvalue. Posso rejeitar o intercept, mas nao o coeficiente (Log_body)
+
+print("Por fim, temos uma boa certeza da relação entre as variáveis, mas ainda falta verificar se os resíduos seguem uma distribuição normal")
+
+ggplot(data = cerebelo, mapping = aes(x = Log_body, y = Log_cerebellum)) + 
+  geom_smooth(method = "lm", color = "deeppink2") + 
+  geom_point(color = "darkblue") + 
+  theme_minimal()
+```
+
+## f)
+
+Realize um teste de hipótese para verificar se os resíduos seguem uma distribuição Normal. Comente os resultados obtidos.
+
+```{r}
+#PASSO 3 - analisar os residuos (os erros)
+hist(modelo_linear$residuals)
+print("Aparenta ser uma distribuição normal")
+
+#vamos realizar um teste de hipoteses para verificar se os resíduos seguem uma distribuição normal
+#H0 (hipotese nula): os resíduos seguem uma distribuição normal -> QUERO ACEITAR H0 (pvalor ser maior que 0.05)
+#Ha (hipotese alternativa); os resíduos não seguem uma distribuição normal
+
+shapiro.test(modelo_linear$residuals)
+#99% > 5%, aceito h0, o modelo é bom
+print("Através do teste de shapiro, aceito que minha hipótese H0 de que o os resíduos seguem uma distribuição normal, logo o modelo é bom")
+```
+
+## g)
+
+Preveja o peso do cerebelo em gramas de uma espécie que pesa 100.000 g. Certifique-se de transformar os gramas em unidades logarítmicas primeiro e depois de volta para gramas
+
+```{r}
+#vamos usar a eq da reta Log_cerebellum = 0.7828*Log_body - 2.1574
+peso <- 100000
+
+calc_cerebelo <- function(peso){
+  log_peso <- log10(peso)
+  log_cerebelo <- 0.7828*log_peso - 2.1574
+  cerebelo <- 10^log_cerebelo
+  return(cerebelo)
+}
+
+calc_cerebelo(peso)
+```
+
+## Questão 3)
+
+O conjunto olive.txt apresenta a composição em porcentagem de oito ácidos graxos encontrados na fração lipídica de 572 azeites italianos além de indicar a região italiana onde cada azeite foi produzido. O objetivo deste exercício é clusterizar os 572 azeites em grupos a partir do modelo K-means
+
+```{r}
+olive <- read.table("olive.txt", sep = ',', header = TRUE)
+str(olive)
+summary(olive)
+```
+
+## a)
+
+Como o modelo K-means é construído a partir do cálculo de distâncias entre observações, é preciso padronizar as variáveis numéricas dos dados antes da modelagem. Utilizando a função scale(), padronize os dados e guarde a padronização num objeto chamado dados_padronizados
+
+```{r}
+dados_padronizados <- cbind(olive["region"], scale(olive[-c(1)])) 
+```
+
+## b)
+
+Construa para este conjunto um modelo K-means com k = 3. Extraia os aglomerados resultados (cluster) e insira este vetor no conjunto como uma vari´avel categ´orica chamada cluster_k3. Por fim, crie um gr´afico de barras em que x = cluster k3 e o preenchimento dessas barras ser´a feito pela vari´avel region. Comente os resultados obtidos no gr´afico.
+
+```{r}
+clusterizacao <- kmeans(x = dados_padronizados[,2:9], centers = 3, nstart = 20)
+
+cluster_k3 <- as.factor(clusterizacao$cluster)
+olive$cluster_k3 <- cluster_k3
+
+ggplot(olive, aes(x = cluster_k3, fill = region)) +
+  geom_bar() + theme_minimal()
+```
+
+## c)
+
+Repita o item anterior para k = 4 e k = 5.
+
+```{r}
+clusterizacao <- kmeans(x = dados_padronizados[,2:9], centers = 4, nstart = 20)
+
+cluster_k4 <- as.factor(clusterizacao$cluster)
+olive$cluster_k4 <- cluster_k4
+
+ggplot(olive, aes(x = cluster_k4, fill = region)) +
+  geom_bar() + theme_minimal()
+
+clusterizacao <- kmeans(x = dados_padronizados[,2:9], centers = 5, nstart = 20)
+
+cluster_k5 <- as.factor(clusterizacao$cluster)
+olive$cluster_k5 <- cluster_k5
+
+ggplot(olive, aes(x = cluster_k5, fill = region)) +
+  geom_bar() + theme_minimal()
+```
