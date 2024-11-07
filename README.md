@@ -26,6 +26,8 @@
 ### Listas de exercício
 - [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/amanda_lista_01.R) feita pela Amanda
 - [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/saliba_lista_01.R) feita pelo Saliba
+- [Lista 01](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/izidro_lista_01.R) feita pelo Izidro
+- [Lista 02](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/amanda_lista_02.R) feita pela Amanda
 
 ### Listas de revisão
 - [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/felipe_revisao_p1.R) feita pelo Felipe
