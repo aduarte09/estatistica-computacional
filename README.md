@@ -30,6 +30,7 @@
 - [Lista 02](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_02_amanda.R) feita pela Amanda
 - [Lista 02](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_02_felipe.qmd) feita pelo Felipe
 - [Lista 02](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_02_saliba.R) feita pelo Saliba
+- [Lista 02](https://github.com/aduarte09/estatistica-computacional/blob/main/exercicios/lista_02_fijora.R) feita pelo Fijora
 
 ### Listas de revisão
 - [Revisão P1](https://github.com/aduarte09/estatistica-computacional/blob/main/revisao/p1_felipe.R) feita pelo Felipe
