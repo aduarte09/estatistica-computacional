@@ -44,7 +44,7 @@ ggplot(data = treino_diabetes,
   geom_boxplot() +
   theme_classic()
 
-# Quanto à idade, entre os 40-60 anos, há mais diabéticos que não diabéticos.
+# QUanto à idade, entre os 40-60 anos, há mais diabéticos que não diabéticos.
 ggplot(data = treino_diabetes,
        mapping = aes(x = Age, fill = Diabetic)) +
   geom_histogram(binwidth = 1, color = "white") +
@@ -161,12 +161,12 @@ ggplot(data = cerebelo,
 
 
 # 2-b: coeficiente de correlação
-correlacao_g <- cor(cerebelo$Body_g, cerebelo$Cerebellum_g)
+correlacao_g <- cor(cerebelo$Cerebellum_g, cerebelo$Body_g)
 correlacao_g    # 0.34
 
 
 # 2-c: coeficiente de correlação (valores transformados)
-correlacao_log <- cor(cerebelo$Log_body, cerebelo$Log_cerebellum)
+correlacao_log <- cor(cerebelo$Log_cerebellum, cerebelo$Log_body)
 correlacao_log  # 0.94
 
 
@@ -178,14 +178,14 @@ correlacao_log  # 0.94
 
 # encontrando a equação da reta de regressão
 modelo_cerebelo <- lm(data = cerebelo,
-                      formula = Log_body ~ Log_cerebellum)
+                      formula = Log_cerebellum ~ Log_body)
 summary(modelo_cerebelo)  
 
-# Intercept: A = 2.80 // Log_cerebellum: B = 1.15
-# equação da reta de regressão: 2.80x + 1.15y = 0
+# Intercept: A = -2.15 // Log_body: B = 0.78
+# equação da reta de regressão: y = 0.78x - 2.15
 
 # analisando testes de hipótese
-cor.test(cerebelo$Log_body, cerebelo$Log_cerebellum)
+cor.test(cerebelo$Log_cerebellum, cerebelo$Log_body)
 
 # p-value = 6.912e-08
 # Como p-value é menor que 5%, devemos rejeitar H0. Dessa forma, temos que a correlação não é igual a 0.
@@ -213,9 +213,9 @@ shapiro.test(modelo_cerebelo$residuals)     # p-value = 0.2335
 
 peso_corpo <- 100000                      # peso do corpo em gramas
 log_corpo <- log10(peso_corpo)            # transformando para log
-log_cerebelo <- 1.15 * log_corpo - 2.80   # 2.80x + 1.15y = 0
+log_cerebelo <- 0.78 * log_corpo - 2.15   # y = 0.78x - 2.15
 peso_cerebelo <- 10 ^ log_cerebelo        # peso do cerebelo em gramas
-peso_cerebelo                             # 891 gramas
+peso_cerebelo                             # 56 gramas
 
 
 
