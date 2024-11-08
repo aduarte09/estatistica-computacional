@@ -44,7 +44,7 @@ ggplot(data = treino_diabetes,
   geom_boxplot() +
   theme_classic()
 
-# QUanto à idade, entre os 40-60 anos, há mais diabéticos que não diabéticos.
+# Quanto à idade, entre os 40-60 anos, há mais diabéticos que não diabéticos.
 ggplot(data = treino_diabetes,
        mapping = aes(x = Age, fill = Diabetic)) +
   geom_histogram(binwidth = 1, color = "white") +
