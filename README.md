@@ -41,3 +41,4 @@
 ### Outros
 - Link para o [site](franklinpedro.github.io) do professor
 - Link para o [livro](https://r4ds.hadley.nz) R for Data Science
+- Link para o [repositório](https://github.com/SalibaM/UFU/tree/main/FAMAT31041%20-%20ESTCOMP) do Saliiba
